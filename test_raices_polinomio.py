@@ -1,4 +1,5 @@
 import unittest
+from decimal import Decimal
 
 from raices_polonomio_grado_2 import PolinomioGrado2 as polinomio2
 
@@ -22,6 +23,9 @@ class Test_raices_polinomio_grado_2(unittest.TestCase):
 
     def test_excepcion_2(self): 
         with self.assertRaises(ValueError): polinomio2('d', 1, 3)
+
+    def test_excepcion_3(self): 
+        with self.assertRaises(ValueError): polinomio2(Decimal('Infinity'),10,10)
 
 if __name__ == '__main__':
     unittest.main()

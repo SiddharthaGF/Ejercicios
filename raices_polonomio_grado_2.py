@@ -1,3 +1,5 @@
+from cmath import isinf
+from decimal import Decimal
 import math
 
 class Excepcion(ValueError):
@@ -14,6 +16,9 @@ class PolinomioGrado2:
         self.__asignarCoeficientes([float(a), float(b), float(c)])
 
     def __asignarCoeficientes(self, coeficientes: list[float]) -> None:
+        if isinf(coeficientes[0]) or isinf(coeficientes[1]) or isinf(coeficientes[2]):
+            raise Excepcion(
+                f'No se admiten números infinitos')
         if coeficientes[0] == 0:
             raise Excepcion(
                 f'El cofeiciente "a" debe ser diferente de 0.')
