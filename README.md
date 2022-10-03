@@ -1,5 +1,5 @@
 # AUTORES
 
-Pablo Guerra 6502 |
-Jose Lopez 6449 |
-Matthew Aviles 6672 |
+Pablo Guerra 6502 \n
+Jose Lopez 6449 \n
+Matthew Aviles 6672 \n
