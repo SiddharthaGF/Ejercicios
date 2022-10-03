@@ -10,8 +10,8 @@ class PolinomioGrado2:
     __b: int
     __c: int
 
-    def __init__(self, a: float, b: float, c: float) -> None:
-        self.__asignarCoeficientes([a, b, c])
+    def __init__(self, a, b, c) -> None:
+        self.__asignarCoeficientes([float(a), float(b), float(c)])
 
     def __asignarCoeficientes(self, coeficientes: list[float]) -> None:
         if coeficientes[0] == 0:
