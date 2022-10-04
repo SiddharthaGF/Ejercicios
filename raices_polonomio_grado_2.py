@@ -1,10 +1,8 @@
 import math
 
-
 class Excepcion(ValueError):
     def __init__(self, message, * args):
         super(Excepcion, self).__init__(message, * args)
-
 
 class PolinomioGrado2:
 
@@ -45,8 +43,9 @@ class PolinomioGrado2:
         return [x1, x2]
 
 
-a = float(input("coeficiente A >> "))
+""" a = float(input("coeficiente A >> "))
 b = float(input("coeficiente B >> "))
 c = float(input("coeficiente C >> "))
 funcion = PolinomioGrado2(a, b, c)
 print(funcion.calcularRaices())
+ """
