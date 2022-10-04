@@ -1,3 +1,5 @@
+from cmath import isinf
+from decimal import Decimal
 import math
 
 class Excepcion(ValueError):
@@ -10,10 +12,13 @@ class PolinomioGrado2:
     __b: int
     __c: int
 
-    def __init__(self, a: float, b: float, c: float) -> None:
-        self.__asignarCoeficientes([a, b, c])
+    def __init__(self, a, b, c) -> None:
+        self.__asignarCoeficientes([float(a), float(b), float(c)])
 
     def __asignarCoeficientes(self, coeficientes: list[float]) -> None:
+        if isinf(coeficientes[0]) or isinf(coeficientes[1]) or isinf(coeficientes[2]):
+            raise Excepcion(
+                f'No se admiten números infinitos')
         if coeficientes[0] == 0:
             raise Excepcion(
                 f'El cofeiciente "a" debe ser diferente de 0.')
@@ -41,10 +46,3 @@ class PolinomioGrado2:
             x1 = (round(t1 + t2, decimales))
             x2 = (round(t1 - t2, decimales))
         return [x1, x2]
-
-""" a = float(input("coeficiente A >> "))
-b = float(input("coeficiente B >> "))
-c = float(input("coeficiente C >> "))
-funcion = PolinomioGrado2(a, b, c)
-print(funcion.calcularRaices())
- """
