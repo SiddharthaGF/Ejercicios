@@ -42,7 +42,6 @@ class PolinomioGrado2:
             x2 = (round(t1 - t2, decimales))
         return [x1, x2]
 
-
 """ a = float(input("coeficiente A >> "))
 b = float(input("coeficiente B >> "))
 c = float(input("coeficiente C >> "))

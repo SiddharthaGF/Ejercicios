@@ -8,7 +8,7 @@ class Test_raices_polinomio_grado_2(unittest.TestCase):
     def test_uno(self):
         polinomio = polinomio2(1, 2, 3)
         self.assertEqual(polinomio.calcularRaices(2), [-1+1.41j, -1-1.41j])
-     
+        
     def test_dos(self):
         polinomio = polinomio2(1, 2, 3)
         self.assertEqual(polinomio.calcularRaices(), [-1+1.414j, -1-1.414j])

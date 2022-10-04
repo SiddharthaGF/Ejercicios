@@ -1,5 +1,6 @@
 from asyncio.windows_events import NULL
 import math
+import string
 
 class Excepcion(ValueError):
     def __init__(self, message, * args):
@@ -12,9 +13,6 @@ class Triangulo:
 
     def __init__(self, a: float, b: float, c: float) -> None:
         self.__validarTraingulo([a, b, c])
-
-    def __init__(self, lados: list[float]) -> None:
-        self.__validarTraingulo(lados)
 
     def __getSemiperimetro(self, lados: list) -> float:
         return sum(lados)/2
@@ -57,13 +55,25 @@ class Triangulo:
 
     def setC(self, c: float) -> None:
         self.__validarTraingulo([self.__lados[0], self.__lados[1], c])
+    
+    def getTipo(self)-> string:
+        result = []
+        for lado in self.__lados:
+            if lado not in result:
+                result.append(lado)
+        ladosdiferentes = len(result)
+        if ladosdiferentes == 3:
+            return "escaleno"
+        else: 
+            if ladosdiferentes == 2:
+                return "isoceles"
+            else: 
+                return "equilatero"
 
+a = float(input("Ingrese el lado A >> "))
+b = float(input("Ingrese el lado B >> "))
+c = float(input("Ingrese el lado C >> "))
 
-lados = [5, 5, 5]
-triangulo = Triangulo(lados)
-area = triangulo.heron(2)
-print(f'El area del triangulo es: {area}')
-triangulo.setB(7)
-area = triangulo.heron(2)
-print(f'El area del triangulo es: {area}')
-print(triangulo.getLados())
+triangulo = Triangulo(a, b, c)
+
+print(triangulo.getTipo())
