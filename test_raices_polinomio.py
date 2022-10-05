@@ -1,8 +1,6 @@
 import unittest
 from decimal import Decimal
-
 from raices_polonomio_grado_2 import PolinomioGrado2 as polinomio2
-
 
 class Test_raices_polinomio_grado_2(unittest.TestCase):
     

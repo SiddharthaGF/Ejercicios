@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from decimal import Decimal
 import math
 import string
 
@@ -11,7 +12,7 @@ class Triangulo:
     __lados: list[float]
     semiPerimetro: float
 
-    def __init__(self, a: float, b: float, c: float) -> None:
+    def __init__(self, a:float, b:float, c:float) -> None:
         self.__validarTraingulo([a, b, c])
 
     def __getSemiperimetro(self, lados: list) -> float:
@@ -19,7 +20,7 @@ class Triangulo:
 
     def __validarTraingulo(self, lados: list) -> None:
         for indice, lado in enumerate(lados):
-            if lado <= 0:
+            if lado <= 0 or lado is Decimal('Infinity'):
                 raise Excepcion(
                     f'El argumento {indice+1} ({lado}) debe ser un numero real positivo.')
         semi = self.__getSemiperimetro(lados)
@@ -69,11 +70,3 @@ class Triangulo:
                 return "isoceles"
             else: 
                 return "equilatero"
-
-a = float(input("Ingrese el lado A >> "))
-b = float(input("Ingrese el lado B >> "))
-c = float(input("Ingrese el lado C >> "))
-
-triangulo = Triangulo(a, b, c)
-
-print(triangulo.getTipo())
