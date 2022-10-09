@@ -1,6 +1,6 @@
 import unittest
 from decimal import Decimal
-from raices_polonomio_grado_2 import PolinomioGrado2 as polinomio2
+from polonomio_grado_2 import PolinomioGrado2 as polinomio2, Excepcion
 
 class Test_raices_polinomio_grado_2(unittest.TestCase):
     
@@ -17,13 +17,17 @@ class Test_raices_polinomio_grado_2(unittest.TestCase):
         self.assertEqual(polinomio.calcularRaices(), [-0.354, -5.646])
     
     def test_excepcion_1(self): 
-        with self.assertRaises(ValueError): polinomio2(0, 99, 99)
+        with self.assertRaises(Excepcion):
+            polinomio2(0, 99, 99)
 
     def test_excepcion_2(self): 
-        with self.assertRaises(ValueError): polinomio2('d', 1, 3)
+        with self.assertRaises(Excepcion):
+            polinomio2('a', 'b', 'c')
 
     def test_excepcion_3(self): 
-        with self.assertRaises(ValueError): polinomio2(Decimal('Infinity'),10,10)
+        num_inf = Decimal('Infinity')
+        with self.assertRaises(Excepcion):
+            polinomio2(num_inf, num_inf, num_inf)
 
 if __name__ == '__main__':
     unittest.main()

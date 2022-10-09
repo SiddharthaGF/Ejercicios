@@ -1,7 +1,6 @@
-from asyncio.windows_events import NULL
-from decimal import Decimal
-import math
+from math import sqrt, isinf
 import string
+import numpy
 
 class Excepcion(ValueError):
     def __init__(self, message, * args):
@@ -12,20 +11,37 @@ class Triangulo:
     __lados: list[float]
     semiPerimetro: float
 
-    def __init__(self, a:float, b:float, c:float) -> None:
-        self.__validarTraingulo([a, b, c])
+    def __init__(self, a, b, c) -> None:
+        self.__validarTriangulo([a, b, c])
+        
+    def __try_parse_float(self, value):
+        try:
+            return float(value)
+        except:
+            return None
 
     def __getSemiperimetro(self, lados: list) -> float:
         return sum(lados)/2
 
-    def __validarTraingulo(self, lados: list) -> None:
+    def __validarTriangulo(self, lados: list) -> None:
         for indice, lado in enumerate(lados):
-            if lado <= 0 or lado is Decimal('Infinity'):
+            aux = self.__try_parse_float(lado)
+            if (isinstance(aux, str)):
                 raise Excepcion(
-                    f'El argumento {indice+1} ({lado}) debe ser un numero real positivo.')
+                    f'El argumento {indice+1} ({aux}) no puede ser una cadena de caracteres.')
+        if (numpy.iscomplex(aux)):
+                raise Excepcion(
+                    f'El argumento {indice+1} ({aux}) no puede ser un numero complejo.')
+        if aux <= 0:
+                raise Excepcion(
+                    f'El argumento {indice+1} ({aux}) no puede ser un numero negativo')
+        if isinf(aux):
+                raise Excepcion(
+                    f'El argumento {indice+1} ({aux}) no puede ser un numero infinito')
         semi = self.__getSemiperimetro(lados)
         for lado in lados:
-            if semi <= lado:
+            aux = self.__try_parse_float(lado)
+            if semi <= aux:
                 raise Excepcion("El triangulo no existe")
         self.semiPerimetro = semi
         self.__lados = lados
@@ -34,30 +50,30 @@ class Triangulo:
         parcial = 1
         for lado in self.__lados:
             parcial *= self.semiPerimetro - lado
-        return round(math.sqrt(self.semiPerimetro * parcial), decimales)
-    
+        return round(sqrt(self.semiPerimetro * parcial), decimales)
+
     def getA(self) -> float:
         return self.__lados[0]
-    
+
     def getB(self) -> float:
         return self.__lados[1]
-    
+
     def getC(self) -> float:
         return self.__lados[2]
-    
+
     def getLados(self) -> list[float]:
         return self.__lados
-    
+
     def setA(self, a: float) -> None:
-        self.__validarTraingulo([a, self.__lados[1], self.__lados[2]])
-            
+        self.__validarTriangulo([a, self.__lados[1], self.__lados[2]])
+
     def setB(self, b: float) -> None:
-        self.__validarTraingulo([self.__lados[0], b, self.__lados[2]])
+        self.__validarTriangulo([self.__lados[0], b, self.__lados[2]])
 
     def setC(self, c: float) -> None:
-        self.__validarTraingulo([self.__lados[0], self.__lados[1], c])
-    
-    def getTipo(self)-> string:
+        self.__validarTriangulo([self.__lados[0], self.__lados[1], c])
+
+    def getTipo(self) -> string:
         result = []
         for lado in self.__lados:
             if lado not in result:
@@ -65,8 +81,8 @@ class Triangulo:
         ladosdiferentes = len(result)
         if ladosdiferentes == 3:
             return "escaleno"
-        else: 
+        else:
             if ladosdiferentes == 2:
                 return "isoceles"
-            else: 
+            else:
                 return "equilatero"

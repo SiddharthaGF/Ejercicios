@@ -22,12 +22,12 @@ class Test_area_triangulo(unittest.TestCase):
 
     # rechazo de numeros complejos
     def test_excepcion_1(self):
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Excepcion):
             Triangulo(2j, 2j, 2j)
 
     # rechazo de cadenas de caracteres
     def test_excepcion_2(self):
-        with self.assertRaises(TypeError):
+        with self.assertRaises(Excepcion):
             Triangulo('a', 'b', 'c')
 
     # rechazo de numeros infinitos
