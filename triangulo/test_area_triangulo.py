@@ -7,18 +7,30 @@ class Test_area_triangulo(unittest.TestCase):
 
     # aceptacion y calculo del area de un triangulo equilatero
     def test_datos_1(self):
-        triangulo = Triangulo(2, 2, 2)
-        self.assertEqual(triangulo.heron(), 1.732)
+        t = Triangulo(2, 2, 2)
+        self.assertEqual(t.heron(), 1.732)
 
     # aceptacion y calculo del area de un triangulo escaleno
     def test_datos_2(self):
-        triangulo = Triangulo(2, 3, 4)
-        self.assertEqual(triangulo.heron(), 2.905)
+        t = Triangulo(2, 3, 4)
+        self.assertEqual(t.heron(), 2.905)
 
     # aceptacion y calculo del area de un triangulo isoceles con dos cifras significativas
     def test_datos_3(self):
-        triangulo = Triangulo(2, 3, 2)
-        self.assertEqual(triangulo.heron(2), 1.98)
+        t = Triangulo(2, 3, 2)
+        self.assertEqual(t.heron(2), 1.98)
+
+    def test_datos_4(self):
+        t = Triangulo(2, 3, 2)
+        self.assertEqual(t.getTipo(), 'isoceles')
+
+    def test_datos_5(self):
+        t = Triangulo(4, 3, 5)
+        self.assertEqual(t.getTipo(), 'escaleno')
+
+    def test_datos_6(self):
+        t = Triangulo(5, 5, 5)
+        self.assertEqual(t.getTipo(), 'equilatero')
 
     # rechazo de numeros complejos
     def test_excepcion_1(self):
@@ -51,9 +63,6 @@ class Test_area_triangulo(unittest.TestCase):
         with self.assertRaises(Excepcion):
             Triangulo(1, 2, 3)
 
-    def test_excepcion_7(self):
-        with self.assertRaises(Excepcion):
-            Triangulo(6, 1, 3)
 
 if __name__ == '__main__':
     unittest.main()

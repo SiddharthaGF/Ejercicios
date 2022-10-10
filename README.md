@@ -10,6 +10,10 @@
   
 ## Entradas Prohibidas:
   - Numeros complejos
-  - Caracteres no numericos
+  - Cadena de caracteres
+  - Numeros infinitos
 
   
+## paquetes requeridos:
+  - Numpy
+  - Coverage 

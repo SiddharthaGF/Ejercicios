@@ -1,27 +1,32 @@
+from numpy import iscomplex
 from polonomio_grado_2 import PolinomioGrado2 as Polinomio
 
-a = input("Ingrese el coeficiente de A >> ")
-b = input("Ingrese el coeficiente de B >> ")
-c = input("Ingrese el coeficiente de C >> ")
-
 try:
-    
+
+    a = float(input("\033[;36m"+"Ingrese el valor de coeficiente A >> "))
+    b = float(input("Ingrese el valor de coeficiente B >> "))
+    c = float(input("Ingrese el valor de coeficiente C >> "))
+    d = float(input("\033[;35m" + "Ingrese el número de decimales de la respuesta >> "))
+
     p = Polinomio(a, b, c)
-    raices = p.calcularRaices()
-
-    p_str = ''
-
-    if a != 0:
-        p_str += f'{a}x² +'
+    r = p.formulaGeneral(int(d))
+    
+    e = f'{a}x² +'
     if b != 0:
-        p_str += f' {b}x +'
+        e += f' {b}x +'
     if c != 0:
-        p_str += f' {c}'
+        e += f' {c}'
+    e.replace(' + - ', ' - ')
 
-    p_str.replace(' + - ', ' - ')
+    print("\033[;37m" + f'\nLas raices del polinomio {e} son:\n')
+    n = len(r)
+    if n == 1:
+        print(f'  -> x = {r[0]}')
+    else:
+        for i, x in enumerate(r):
+            print(f'  -> x{i+1} = {x}')
 
-    print(f'Las raices del polinomio {p_str} son: {raices}')
-    
 except Exception as e:
-    
-    print(f'Ha ocurrido una excepcion: {repr(e)}')
+
+    print("\033[;31m" + f'Ha ocurrido una excepcion: {repr(e)}')
+
