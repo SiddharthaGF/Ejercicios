@@ -1,5 +1,5 @@
 from numpy import iscomplex
-from polonomio_grado_2 import PolinomioGrado2 as Polinomio
+from algebra.polonomio_grado_2 import PolinomioGrado2 as Polinomio
 
 try:
 

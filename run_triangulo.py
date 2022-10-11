@@ -1,4 +1,4 @@
-from area_triangulo import Triangulo
+from geometria.triangulo import Triangulo
 
 a = float(input("Ingrese el valor del lado A >> "))
 b = float(input("Ingrese el valor del lado B >> "))

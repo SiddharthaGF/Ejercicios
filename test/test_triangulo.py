@@ -1,6 +1,9 @@
-import unittest
 from decimal import Decimal
-from area_triangulo import Excepcion, Triangulo
+import unittest
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from geometria.triangulo import *
 
 
 class Test_area_triangulo(unittest.TestCase):

@@ -1,2 +1,5 @@
-/polinomio_grado_2/__pycache__
-/.vscode
+.vscode
+/geometria/__pycache__
+/algebra/__pycache__
+.coverage
+.htmlcov

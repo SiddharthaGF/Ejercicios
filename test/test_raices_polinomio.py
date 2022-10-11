@@ -1,9 +1,12 @@
+import os
+import sys
 import unittest
 from decimal import Decimal
-from polonomio_grado_2 import PolinomioGrado2 as Polinomio, Excepcion
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from algebra.polonomio_grado_2 import PolinomioGrado2 as Polinomio, Excepcion
 
 
-class Test_raices_polinomio_grado_2(unittest.TestCase):
+class TestRaicesPolinomioGrado2(unittest.TestCase):
 
     def test_uno(self):
         p = Polinomio(1, 2, 3)
